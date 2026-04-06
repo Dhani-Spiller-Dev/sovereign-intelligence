@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sovereign Intelligence — AI Governance · Human Authorship · Global</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET & ROOT ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --white:   #ffffff;
+  --off:     #fafafa;
+  --black:   #0a0a0a;
+  --ink:     #1a1a1a;
+  --mid:     #4a4a4a;
+  --muted:   #8a8a8a;
+  --border:  #e8e8e8;
+  --purple:  #2d1b69;
+  --purple2: #3d2b8e;
+  --gold:    #b8922a;
+  --gold2:   #c9a84c;
+
+  --ff-body:    'DM Sans', -apple-system, sans-serif;
+  --ff-display: 'Playfair Display', Georgia, serif;
+  --ff-mono:    'DM Mono', monospace;
+
+  --max:  1200px;
+  --gutter: clamp(1.5rem, 5vw, 5rem);
+}
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--ff-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── UTILITIES ── */
+.container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.divider { height: 1px; background: var(--border); }
+.divider--gold { background: var(--gold); opacity: 0.4; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  height: 64px;
+  display: flex; align-items: center;
+}
+.nav-inner {
+  max-width: var(--max); margin: 0 auto;
+  padding: 0 var(--gutter);
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.logo-mark {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-text span { color: var(--gold); }
+
+.nav-links {
+  display: flex; align-items: center; gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--black); }
+
+.nav-cta {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--black);
+  color: var(--black);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--black); color: var(--white); }
+
+.hamburger { display: none; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--black); margin: 5px 0; transition: all 0.3s; }
+
+/* ── HERO ── */
+.hero {
+  padding-top: 64px;
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.hero-eyebrow-line {
+  width: 40px; height: 1px; background: var(--gold);
+}
+.hero-eyebrow-text {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 400;
+}
+.hero-question {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--black);
+  max-width: 820px;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+}
+.hero-tagline {
+  font-size: 0.875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--purple2);
+  margin-bottom: 2rem;
+}
+.hero-body {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  font-weight: 300;
+  color: var(--mid);
+  max-width: 600px;
+  line-height: 1.75;
+  margin-bottom: 3rem;
+}
+.hero-actions { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.625rem;
+  padding: 0.875rem 2rem;
+  background: var(--black);
+  color: var(--white);
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--purple2); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.btn-secondary:hover { color: var(--black); }
+.btn-arrow { font-size: 1rem; }
+
+.hero-grid-decoration {
+  position: absolute;
+  right: 0; top: 50%; transform: translateY(-50%);
+  width: 380px; height: 380px;
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+/* ── SECTION SHARED ── */
+section { padding: clamp(5rem, 10vw, 9rem) 0; }
+
+.section-label {
+  display: flex; align-items: center; gap: 0.875rem;
+  margin-bottom: 3.5rem;
+}
+.section-label-line { width: 32px; height: 1px; background: var(--gold); }
+.section-label-text {
+  font-size: 0.6875rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+.section-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  color: var(--black);
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+.section-title strong { font-weight: 500; }
+.section-intro {
+  font-size: 1.0625rem;
+  font-weight: 300;
+  color: var(--mid);
+  max-width: 620px;
+  line-height: 1.75;
+}
+
+/* ── SERVICES ── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin-top: 4rem;
+}
+.service-card {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 2.5rem;
+  position: relative;
+  transition: background 0.25s;
+  cursor: default;
+}
+.service-card:hover { background: var(--off); }
+.service-num {
+  font-family: var(--ff-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 1.25rem;
+}
+.service-verb {
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.service-name {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--black);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+.service-tagline {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--purple2);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+.service-desc {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.service-price {
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* ── WHO WE SERVE ── */
+.serve-section { background: var(--off); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.serve-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin-top: 4rem;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.serve-card {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+}
+.serve-icon {
+  width: 36px; height: 36px;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+}
+.serve-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--black);
+  margin-bottom: 0.625rem;
+  line-height: 1.3;
+}
+.serve-desc {
+  font-size: 0.8125rem;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.65;
+}
+
+/* ── SCORECARD ── */
+.scorecard-section {
+  background: var(--black);
+  color: var(--white);
+  padding: clamp(5rem, 10vw, 9rem) 0;
+}
+.scorecard-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.scorecard-label { margin-bottom: 3.5rem; }
+.scorecard-label .section-label-line { background: var(--gold); }
+.scorecard-label .section-label-text { color: var(--gold); }
+.scorecard-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+.scorecard-body {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+}
+.scorecard-action {
+  display: inline-flex; align-items: center; gap: 0.625rem;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.2s;
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+.scorecard-action:hover { background: var(--gold); color: var(--black); }
+.scorecard-action-2 {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.scorecard-action-2:hover { color: var(--white); }
+
+.scorecard-visual {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 2.5rem;
+}
+.score-dimensions { list-style: none; }
+.score-dim {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.score-dim:last-child { border-bottom: none; }
+.dim-num {
+  font-family: var(--ff-mono);
+  font-size: 0.6875rem;
+  color: var(--gold);
+  width: 20px;
+  flex-shrink: 0;
+}
+.dim-name {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+}
+.dim-bar {
+  width: 80px; height: 2px;
+  background: rgba(255,255,255,0.1);
+  position: relative;
+}
+.dim-bar-fill {
+  position: absolute; left: 0; top: 0; height: 100%;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+/* ── IDEAS ── */
+.ideas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 4rem;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.idea-card {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 2.5rem;
+  transition: background 0.2s;
+}
+.idea-card:hover { background: var(--off); }
+.idea-cat {
+  font-size: 0.625rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 1rem;
+}
+.idea-title {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--black);
+  line-height: 1.4;
+  margin-bottom: 0.875rem;
+}
+.idea-desc {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+.idea-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border-bottom: 1px solid var(--black);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.idea-link:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ── ABOUT ── */
+.about-section { border-top: 1px solid var(--border); }
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8rem;
+  align-items: start;
+}
+.about-body {
+  font-size: 1.0625rem;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+.about-body strong { color: var(--black); font-weight: 500; }
+.about-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+  margin-top: 0.5rem;
+}
+.about-badge-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+/* ── MISSION & CREDO ── */
+.mission-section { background: var(--off); border-top: 1px solid var(--border); }
+.mission-block { margin-bottom: 4rem; }
+.mission-label-text {
+  font-size: 0.6875rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 1rem;
+}
+.mission-text {
+  font-size: clamp(1rem, 1.75vw, 1.1875rem);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.8;
+  max-width: 780px;
+}
+.vision-text {
+  font-family: var(--ff-display);
+  font-size: clamp(1.375rem, 2.5vw, 2rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--black);
+  line-height: 1.4;
+  max-width: 700px;
+  border-left: 2px solid var(--gold);
+  padding-left: 2rem;
+}
+.credo-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 3rem;
+}
+.credo-item {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.credo-num {
+  font-family: var(--ff-mono);
+  font-size: 0.6875rem;
+  color: var(--gold);
+  padding-top: 0.25rem;
+  letter-spacing: 0.05em;
+}
+.credo-text {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.75;
+}
+.credo-text em { color: var(--black); font-style: normal; font-weight: 400; }
+
+/* ── CONTACT ── */
+.contact-section {
+  border-top: 1px solid var(--border);
+  padding: clamp(5rem, 10vw, 9rem) 0;
+}
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8rem;
+  align-items: center;
+}
+.contact-title {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 300;
+  color: var(--black);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+.contact-body {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+}
+.contact-email {
+  display: inline-block;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: var(--black);
+  text-decoration: none;
+  border-bottom: 1px solid var(--black);
+  padding-bottom: 2px;
+  transition: all 0.2s;
+}
+.contact-email:hover { color: var(--gold); border-color: var(--gold); }
+.contact-details {
+  padding: 3rem;
+  border: 1px solid var(--border);
+}
+.contact-detail-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.contact-detail-item:last-child { border-bottom: none; }
+.contact-detail-label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  width: 100px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.contact-detail-value {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 0;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.footer-left {
+  font-size: 0.8125rem;
+  font-weight: 300;
+  color: var(--muted);
+}
+.footer-links {
+  display: flex; gap: 2rem; list-style: none; flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--black); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.fade-up-1 { animation-delay: 0.1s; }
+.fade-up-2 { animation-delay: 0.25s; }
+.fade-up-3 { animation-delay: 0.4s; }
+.fade-up-4 { animation-delay: 0.55s; }
+.fade-up-5 { animation-delay: 0.7s; }
+
+/* ── MOBILE NAV ── */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 64px; left: 0; right: 0; bottom: 0;
+  background: var(--white);
+  z-index: 99;
+  padding: 3rem var(--gutter);
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  overflow-y: auto;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+  display: block;
+}
+.mobile-nav a:hover { color: var(--gold); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .serve-grid { grid-template-columns: repeat(3, 1fr); }
+  .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 4rem; }
+  .scorecard-inner { grid-template-columns: 1fr; gap: 4rem; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: block; }
+  .services-grid { grid-template-columns: 1fr; }
+  .serve-grid { grid-template-columns: repeat(2, 1fr); }
+  .ideas-grid { grid-template-columns: 1fr; }
+  .hero-grid-decoration { display: none; }
+}
+@media (max-width: 480px) {
+  .serve-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <svg class="logo-mark" width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="10" cy="16" r="8" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+        <circle cx="18" cy="12" r="5.5" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+      </svg>
+      Sovereign <span>&nbsp;Intelligence</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">What We Do</a></li>
+      <li><a href="#serve">Who We Serve</a></li>
+      <li><a href="#scorecard">Scorecard</a></li>
+      <li><a href="#ideas">Ideas</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#mission">Mission</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+    <button class="hamburger" onclick="toggleMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── MOBILE NAV ── -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#services" onclick="closeMobile()">What We Do</a>
+  <a href="#serve" onclick="closeMobile()">Who We Serve</a>
+  <a href="#scorecard" onclick="closeMobile()">The Scorecard</a>
+  <a href="#ideas" onclick="closeMobile()">Ideas</a>
+  <a href="#about" onclick="closeMobile()">About Us</a>
+  <a href="#mission" onclick="closeMobile()">Mission & Beliefs</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow fade-up fade-up-1">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">AI Governance · Human Authorship · Global</span>
+    </div>
+    <h1 class="hero-question fade-up fade-up-2">
+      What does humanity look like when AI reshapes how we think, create, govern, and relate to one another?
+    </h1>
+    <p class="hero-tagline fade-up fade-up-3">We build AI-ready sovereign societies.</p>
+    <p class="hero-body fade-up fade-up-4">
+      Sovereign Intelligence exists to preserve the sovereignty of the individual, the team, the organisation, the government, and society itself — ensuring that the development and deployment of AI remains in service of human creativity, human dignity, and the extraordinary diversity of human culture.
+    </p>
+    <div class="hero-actions fade-up fade-up-5">
+      <a href="#scorecard" class="btn-primary">Take the free Scorecard <span class="btn-arrow">→</span></a>
+      <a href="#contact" class="btn-secondary">Get in touch <span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+  <!-- Grid decoration -->
+  <svg class="hero-grid-decoration" viewBox="0 0 380 380" fill="none">
+    <circle cx="190" cy="190" r="160" stroke="#0a0a0a" stroke-width="1"/>
+    <circle cx="190" cy="190" r="110" stroke="#0a0a0a" stroke-width="1"/>
+    <line x1="190" y1="30" x2="190" y2="350" stroke="#0a0a0a" stroke-width="1"/>
+    <line x1="30" y1="210" x2="350" y2="210" stroke="#0a0a0a" stroke-width="1"/>
+    <circle cx="190" cy="190" r="5" fill="#b8922a"/>
+  </svg>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="container">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">Our Work</span>
+    </div>
+    <h2 class="section-title"><strong>Four ways</strong> we work with you.</h2>
+    <p class="section-intro">Every engagement is co-designed with the people it serves, built on local expertise, and oriented toward one outcome: more human authorship, not less.</p>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <span class="service-verb">Assess</span>
+        <h3 class="service-name">The AI Government Scorecard</h3>
+        <span class="service-tagline">Know where you stand.</span>
+        <p class="service-desc">Before you can act, you need an honest picture of where you are. Our flagship diagnostic tool assesses governments and institutions across six dimensions. The result is not a ranking. It is a mirror — a clear, scored picture of your current position, what is working, and where to focus first.</p>
+        <span class="service-price">Free individual version · Scorecard Pro from €8,000</span>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <span class="service-verb">Build</span>
+        <h3 class="service-name">AI Literacy &amp; Leadership Programmes</h3>
+        <span class="service-tagline">Become the author, not the recipient.</span>
+        <p class="service-desc">Understanding AI is not a technical skill. It is a leadership skill. Our programmes range from one-day executive workshops to multi-month learning journeys — all co-designed with participants, grounded in local context, and built around one conviction: that the people closest to a problem are best placed to solve it.</p>
+        <span class="service-price">Workshops from €8,000 · Full programmes from €30,000</span>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <span class="service-verb">Advise</span>
+        <h3 class="service-name">AI Strategy &amp; Policy</h3>
+        <span class="service-tagline">Govern AI on your own terms.</span>
+        <p class="service-desc">We work alongside governments, ministries, and development institutions to develop AI strategies, policy frameworks, and governance structures that are genuinely theirs — rooted in their context, their values, and their own vision of the future. Not imported frameworks dressed in local colours.</p>
+        <span class="service-price">Advisory retainers from €5,000/month · Policy mandates from €30,000</span>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <span class="service-verb">Design</span>
+        <h3 class="service-name">AI Design Sprints</h3>
+        <span class="service-tagline">Build what only you can build.</span>
+        <p class="service-desc">Our design sprints bring together government teams, local experts, and our facilitation expertise in intensive two-to-four-week engagements. The result is not a report. It is a working prototype, a clearer strategy, and a team that knows how to build on it.</p>
+        <span class="service-price">Design sprints from €20,000</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WHO WE SERVE ── -->
+<section id="serve" class="serve-section">
+  <div class="container">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">Our Clients</span>
+    </div>
+    <h2 class="section-title">We work with whoever <strong>shapes the relationship</strong> between humanity and AI.</h2>
+    <p class="section-intro">Our primary focus is the Global South — Africa, Latin America, Southeast Asia — where the gap between AI's potential and the capacity to govern it is greatest. We are built on local talent.</p>
+
+    <div class="serve-grid">
+      <div class="serve-card">
+        <div class="serve-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" stroke="#0a0a0a" stroke-width="1.2"/></svg></div>
+        <div class="serve-title">National Governments</div>
+        <div class="serve-desc">Ministries of Labour, Digital Economy, Finance, Planning, and Public Service navigating AI strategy, workforce transition, and the governance of automated decision-making.</div>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#0a0a0a" stroke-width="1.2"/></svg></div>
+        <div class="serve-title">Development Institutions</div>
+        <div class="serve-desc">UNDP, ILO, World Bank, GIZ, FCDO, EU delegations, and other development organisations running AI and future-of-work programmes. We deliver as lead contractor, specialist partner, or embedded expert.</div>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#0a0a0a" stroke-width="1.2"/><circle cx="8" cy="8" r="3" stroke="#0a0a0a" stroke-width="1.2"/></svg></div>
+        <div class="serve-title">Regional Bodies</div>
+        <div class="serve-desc">The African Union, ECOWAS, EAC, and similar regional organisations developing continental AI governance frameworks and cross-border data policy.</div>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" stroke="#0a0a0a" stroke-width="1.2"/><rect x="5" y="5" width="6" height="6" stroke="#0a0a0a" stroke-width="1.2"/></svg></div>
+        <div class="serve-title">Businesses &amp; Organisations</div>
+        <div class="serve-desc">Private sector organisations, civil society bodies, and research institutions working to ensure AI serves their people, their culture, and their values rather than eroding them.</div>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polygon points="8,1 15,15 1,15" stroke="#0a0a0a" stroke-width="1.2" fill="none"/></svg></div>
+        <div class="serve-title">Individuals</div>
+        <div class="serve-desc">Public servants, officials, leaders, and professionals who want to understand AI deeply enough to be genuine authors of their own relationship with it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SCORECARD ── -->
+<section id="scorecard" class="scorecard-section">
+  <div class="container">
+    <div class="scorecard-inner">
+      <div>
+        <div class="section-label scorecard-label">
+          <div class="section-label-line"></div>
+          <span class="section-label-text">Free Tool</span>
+        </div>
+        <h2 class="scorecard-title">Where does your institution stand?</h2>
+        <p class="scorecard-body">The AI Government Scorecard is a free diagnostic tool for public servants, officials, and institutional leaders. In ten minutes, it gives you a scored picture of your own AI literacy, your institution's readiness across six dimensions, and where to focus next.</p>
+        <p class="scorecard-body">Over time, as institutions across Africa and the Global South complete the Scorecard, we publish aggregated results as the annual State of AI Governance report — the most comprehensive independent picture of AI governance readiness across the developing world.</p>
+        <div style="margin-top: 2.5rem;">
+          <a href="#" class="scorecard-action">Take the Scorecard — free →</a>
+          <br style="display: none;">
+          <a href="#services" class="scorecard-action-2" style="margin-top: 1rem; display: inline-block;">Learn about Scorecard Pro →</a>
+        </div>
+      </div>
+      <div class="scorecard-visual">
+        <div style="font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.5rem; font-family: var(--ff-mono);">Six dimensions assessed</div>
+        <ul class="score-dimensions">
+          <li class="score-dim">
+            <span class="dim-num">01</span>
+            <span class="dim-name">Policy &amp; Governance</span>
+            <div class="dim-bar"><div class="dim-bar-fill" style="width:75%"></div></div>
+          </li>
+          <li class="score-dim">
+            <span class="dim-num">02</span>
+            <span class="dim-name">Labour Market Readiness</span>
+            <div class="dim-bar"><div class="dim-bar-fill" style="width:48%"></div></div>
+          </li>
+          <li class="score-dim">
+            <span class="dim-num">03</span>
+            <span class="dim-name">Internal Capacity</span>
+            <div class="dim-bar"><div class="dim-bar-fill" style="width:62%"></div></div>
+          </li>
+          <li class="score-dim">
+            <span class="dim-num">04</span>
+            <span class="dim-name">Digital Infrastructure</span>
+            <div class="dim-bar"><div class="dim-bar-fill" style="width:35%"></div></div>
+          </li>
+          <li class="score-dim">
+            <span class="dim-num">05</span>
+            <span class="dim-name">Regulatory Environment</span>
+            <div class="dim-bar"><div class="dim-bar-fill" style="width:55%"></div></div>
+          </li>
+          <li class="score-dim">
+            <span class="dim-num">06</span>
+            <span class="dim-name">Innovation Ecosystem</span>
+            <div class="dim-bar"><div class="dim-bar-fill" style="width:42%"></div></div>
+          </li>
+        </ul>
+        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.07);">
+          <div style="font-size: 0.75rem; color: rgba(255,255,255,0.3); font-weight: 300;">Results contributed to the annual</div>
+          <div style="font-size: 0.8125rem; color: rgba(255,255,255,0.6); font-weight: 400; margin-top: 0.25rem;">State of AI Governance Report</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── IDEAS ── -->
+<section id="ideas">
+  <div class="container">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">Ideas &amp; Research</span>
+    </div>
+    <h2 class="section-title">We <strong>think in public.</strong></h2>
+    <p class="section-intro">Research, essays, policy papers, and perspectives from our team and our global network — written for practitioners, not just academics. For the minister navigating an AI strategy. For the civil servant wondering what this means for their team.</p>
+
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <span class="idea-cat">Annual Report</span>
+        <h3 class="idea-title">The State of AI Governance in Africa — 2025</h3>
+        <p class="idea-desc">The most comprehensive independent assessment of AI governance readiness across Sub-Saharan Africa, based on data from the AI Government Scorecard.</p>
+        <a href="#" class="idea-link">Read more →</a>
+      </div>
+      <div class="idea-card">
+        <span class="idea-cat">Essay</span>
+        <h3 class="idea-title">What Cognitive Passivity Looks Like — and How to Interrupt It</h3>
+        <p class="idea-desc">On the slow drift from author to consumer, and what individuals and institutions can do to remain the authors of their own relationship with AI.</p>
+        <a href="#" class="idea-link">Read more →</a>
+      </div>
+      <div class="idea-card">
+        <span class="idea-cat">Policy Brief</span>
+        <h3 class="idea-title">AI and the Sovereignty of Difference</h3>
+        <p class="idea-desc">Why cultural diversity is not a challenge for AI governance — it is its purpose. The case for AI systems that serve the full diversity of human culture.</p>
+        <a href="#" class="idea-link">Read more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <div class="section-label">
+          <div class="section-label-line"></div>
+          <span class="section-label-text">Who We Are</span>
+        </div>
+        <h2 class="section-title">We are built on <strong>local talent.</strong></h2>
+      </div>
+      <div>
+        <p class="about-body">Sovereign Intelligence is not a Western organisation that deploys African experts. We are built on local expertise — where the knowledge, the relationships, and the leadership of the people we serve are not a feature of how we work, but the <strong>foundation of it.</strong></p>
+        <p class="about-body">Our team combines AI specialists, policy advisors, development practitioners, designers, and researchers from across Africa, Europe, and beyond — people who have spent careers inside the governments, UN agencies, and institutions we now advise. We know how decisions get made, where capacity gaps actually lie, and what implementation really requires.</p>
+        <p class="about-body">We are headquartered in Palma de Mallorca, Spain, with local presence across Africa.</p>
+        <div class="about-badge">
+          <span class="about-badge-dot"></span>
+          Non-profit association · Asociación sin Ánimo de Lucro · Registered in Spain
+        </div>
+        <p class="about-body" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">Our mission is to serve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MISSION ── -->
+<section id="mission" class="mission-section">
+  <div class="container">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">Mission &amp; Beliefs</span>
+    </div>
+
+    <div class="mission-block">
+      <span class="mission-label-text">Mission</span>
+      <p class="mission-text">Sovereign Intelligence works with individuals, teams, organisations, governments, and societies around the world to ensure that the age of artificial intelligence deepens human authorship, expands human creativity, honours the extraordinary diversity of human culture, and strengthens human relationships. We build the skills, the governance frameworks, and the imagination needed for people everywhere to be active authors of their relationship with AI — across every culture, every context, every scale.</p>
+    </div>
+
+    <div class="mission-block">
+      <span class="mission-label-text">Vision</span>
+      <p class="vision-text">Not a smaller circle. A vastly larger one — where AI expands what human beings can imagine, make, govern, and become.</p>
+    </div>
+
+    <div class="mission-block" style="margin-top: 5rem;">
+      <span class="mission-label-text">What We Believe</span>
+      <div class="credo-grid">
+        <div class="credo-item">
+          <span class="credo-num">01</span>
+          <p class="credo-text">We believe creativity is not a capability to be optimised. It is the place where the human spirit expresses its deepest nature. When AI threatens it, <em>the problem is not one of efficiency. It is a spiritual one.</em></p>
+        </div>
+        <div class="credo-item">
+          <span class="credo-num">02</span>
+          <p class="credo-text">We believe in the sovereignty of difference — the breathtaking diversity of how human beings think, build, worship, make music, raise children, and inhabit the land. <em>Not one correct way. Thousands of ways, each rooted in something real. Each irreplaceable.</em></p>
+        </div>
+        <div class="credo-item">
+          <span class="credo-num">03</span>
+          <p class="credo-text">We believe the greatest risk of this moment is cognitive passivity — <em>the slow drift from author to consumer, from creator to recipient</em> — without anyone making that choice deliberately.</p>
+        </div>
+        <div class="credo-item">
+          <span class="credo-num">04</span>
+          <p class="credo-text">We believe in the silence. In the space where something arrives that cannot be explained or predicted or generated. <em>AI should create more of that silence, not fill it.</em></p>
+        </div>
+        <div class="credo-item">
+          <span class="credo-num">05</span>
+          <p class="credo-text">We believe that progress without diversity is impoverishment. That a world where every culture reaches for the same answers, every mind is shaped by the same training data, <em>is a world that has lost something it cannot name and cannot recover.</em></p>
+        </div>
+        <div class="credo-item">
+          <span class="credo-num">06</span>
+          <p class="credo-text">We believe in children. <em>In the direction we set now, while it can still be set.</em></p>
+        </div>
+        <div class="credo-item">
+          <span class="credo-num">07</span>
+          <p class="credo-text">We do not resist AI. We insist on something — on human authorship, on rootedness, on the irreplaceable. <em>On a future that is genuinely, unmistakably ours.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <div class="section-label">
+          <div class="section-label-line"></div>
+          <span class="section-label-text">Contact</span>
+        </div>
+        <h2 class="contact-title">Ready to work together?</h2>
+        <p class="contact-body">Whether you are a government navigating your first AI strategy, a development institution seeking a delivery partner, an organisation building the capacity of your people, or an individual who wants to understand this moment more deeply — we want to hear from you.</p>
+        <a href="mailto:hello@sovereign-intelligence.org" class="contact-email">hello@sovereign-intelligence.org</a>
+      </div>
+      <div class="contact-details">
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">Email</span>
+          <span class="contact-detail-value">hello@sovereign-intelligence.org</span>
+        </div>
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">Location</span>
+          <span class="contact-detail-value">Palma de Mallorca, Illes Balears, Spain</span>
+        </div>
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">Presence</span>
+          <span class="contact-detail-value">Africa · Europe · Global</span>
+        </div>
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">Entity</span>
+          <span class="contact-detail-value">Asociación sin Ánimo de Lucro · Spain</span>
+        </div>
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">Language</span>
+          <span class="contact-detail-value">English · French · Spanish</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        © 2025 Sovereign Intelligence — Asociación sin Ánimo de Lucro · Palma de Mallorca, España
+      </div>
+      <ul class="footer-links">
+        <li><a href="#services">What We Do</a></li>
+        <li><a href="#serve">Who We Serve</a></li>
+        <li><a href="#scorecard">Scorecard</a></li>
+        <li><a href="#ideas">Ideas</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMobile() {
+  const nav = document.getElementById('mobileNav');
+  nav.classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('mobileNav').classList.remove('open');
+}
+
+// Scroll-triggered fade-in for sections below the fold
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.service-card, .serve-card, .idea-card, .credo-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--black)' : '';
+  });
+});
+</script>
+</body>
+</html>
